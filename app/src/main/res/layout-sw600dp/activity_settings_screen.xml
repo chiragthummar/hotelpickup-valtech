@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_settings_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.valtech.movenpick.ui.SettingsScreen">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/yellow"
+        app:titleTextColor="@color/black" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolBar"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/loadingLayer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:indeterminate="true"
+                    android:indeterminateOnly="true" />
+
+                <TextView
+                    android:id="@+id/loadingEventsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/loadingEventsLabel"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/defaultHeaderSize"
+                    android:typeface="serif" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentLayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/allowableEventsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="7"
+                        android:gravity="start"
+
+                        android:text="@string/allowableEventsLabel"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <LinearLayout
+                        android:id="@+id/eventsLayer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:layout_weight="3"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="API URL"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <EditText
+                        android:id="@+id/apiURLField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/inputRightMargin"
+                        android:layout_weight="3"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/enterAPIURLLabel"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="2000"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="SMS API URL"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <EditText
+                        android:id="@+id/smsAPIURLField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/inputRightMargin"
+                        android:layout_weight="3"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/smsAPIURLLabel"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="2000"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="start" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/cameraToUseLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="@string/cameraToUseLabel"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <Spinner
+                        android:id="@+id/cameraToUseField"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginRight="@dimen/inputRightMargin"
+                        android:layout_weight="3"
+                        android:gravity="start" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="start" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="Barcode Length"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <EditText
+                        android:id="@+id/minimumBarCodeCharactersField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/inputRightMargin"
+                        android:layout_weight="3"
+                        android:gravity="start"
+                        android:hint="@string/minimumBarCodeCharactersLabel"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="2"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="start" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="Is Mobile  Optional?"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <CheckBox
+                        android:id="@+id/cbIsMobileOptional"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:buttonTint="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="7"
+                        android:gravity="start|top"
+                        android:text="NFC"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <CheckBox
+                        android:id="@+id/cbNFC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:buttonTint="@color/white" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="center" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="10dp"
+                        android:gravity="start"
+                        android:text="Set Custom Logo"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/defaultHeaderSize"
+                        android:typeface="serif" />
+
+                    <Button
+                        android:id="@+id/btnLogoUpload"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/txtLogo"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/buttonnewbg"
+                        android:text="Browse" />
+
+                    <ImageView
+
+                        android:id="@+id/imgLogo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_toRightOf="@+id/btnLogoUpload" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:gravity="start" />
+
+                <Button
+                    android:id="@+id/saveSettingsButton"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/buttonnewbg"
+
+                    android:text="@string/saveSettingsLabel"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/defaultTextSize"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/blankItemLabel" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

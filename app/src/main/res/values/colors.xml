@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#263238</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+
+    <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
+    <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="lightBlack">#ff1e1e1c</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparentColor">@color/transparent</color>
+    <color name="divider">#ffc0c0c0</color>
+
+    <color name="yellow">#fecb3e</color>
+    <color name="text_color">#585151</color>
+    <color name="text_color_white">#ffffff</color>
+    <color name="dark_gray">#f5f3f4</color>
+    <color name="gray_button_bg">#6e707c</color>
+    <color name="blacklight">#757575</color>
+</resources>

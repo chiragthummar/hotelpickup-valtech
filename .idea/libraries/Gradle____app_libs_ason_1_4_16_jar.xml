@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/ason-1.4.16.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/ason-1.4.16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
