@@ -1298,9 +1298,14 @@ public class PickupCarScreen extends AppCompatActivity implements OnClickListene
                                     JSONObject serviceJson = jsonObject.getJSONObject("service");
 
                                     if(serviceJson.has("transamount")){
+                                        String mobile = mobileNumber.getText().toString();
+                                        if (!mobile.equals("")) {
+                                            validMobileNumber = txt_contry_code.getText().toString() + mobileNumber.getText().toString() + "";
+                                        }
                                         PickupCarScreen.this.dialog.dismiss();
                                         Intent intent = new Intent(PickupCarScreen.this, DiscountScreen.class);
                                         intent.putExtra("Json",serviceJson.toString());
+                                        intent.putExtra(GeneralConstants.MOBILE_NUM, validMobileNumber);
                                         startActivity(intent);
                                         return;
                                     }

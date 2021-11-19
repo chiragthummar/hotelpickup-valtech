@@ -31,6 +31,7 @@ import com.valtech.movenpick.R;
 import com.valtech.movenpick.entities.UserSettings;
 import com.valtech.movenpick.manager.UserSettingsManager;
 import com.valtech.movenpick.manager.Utility;
+import com.valtech.movenpick.util.HotelPickupConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,11 +42,12 @@ import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
 public class DiscountScreen extends AppCompatActivity {
-    TextView barcodeField, taxField, totalField;
+    TextView barcodeField, taxField, totalField, mobileField;
     EditText amountField;
     Button btnSubmit;
     Handler handler;
     ImageView imgLogo;
+    String mobileNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class DiscountScreen extends AppCompatActivity {
         String response = getIntent().getStringExtra("Json");
         try {
             JSONObject jsonObject = new JSONObject(response);
+            mobileNumber = getIntent().getStringExtra(HotelPickupConstants.GeneralConstants.MOBILE_NUM);
+
             setData(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -104,6 +108,11 @@ public class DiscountScreen extends AppCompatActivity {
             amountField.setText("" + avg);
             String total = format.format(Double.valueOf(avg) + Double.valueOf(tax));
             totalField.setText(total);
+            if (mobileNumber != null && mobileNumber.length() > 0) {
+                mobileField.setText(mobileNumber);
+            } else {
+                mobileField.setText("Not Provided");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -116,6 +125,7 @@ public class DiscountScreen extends AppCompatActivity {
         taxField = findViewById(R.id.taxField);
         totalField = findViewById(R.id.totalField);
         amountField = findViewById(R.id.amountField);
+        mobileField = findViewById(R.id.mobileField);
         amountField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -175,11 +185,18 @@ public class DiscountScreen extends AppCompatActivity {
 
 
             apiURL = new StringBuilder(String.valueOf(apiURL)).append("?action=updateamount").toString();
+            String postData = "";
+            if (mobileNumber != null && mobileNumber.length() > 0) {
+                postData = "barcode=" + URLEncoder.encode(barcodeField.getText().toString(), "UTF-8") +
+                        "&transamount=" + URLEncoder.encode(amountField.getText().toString(), "UTF-8") +
+                        "&taxamount=" + URLEncoder.encode(taxField.getText().toString(), "UTF-8") +
+                        "&mobileno=" + URLEncoder.encode(mobileNumber, "UTF-8");
+            } else {
+                postData = "barcode=" + URLEncoder.encode(barcodeField.getText().toString(), "UTF-8") +
+                        "&transamount=" + URLEncoder.encode(amountField.getText().toString(), "UTF-8") +
+                        "&taxamount=" + URLEncoder.encode(taxField.getText().toString(), "UTF-8");
+            }
 
-
-            String postData = "barcode=" + URLEncoder.encode(barcodeField.getText().toString(), "UTF-8") +
-                    "&transamount=" + URLEncoder.encode(amountField.getText().toString(), "UTF-8") +
-                    "&taxamount=" + URLEncoder.encode(taxField.getText().toString(), "UTF-8");
             Log.e("postData", postData);
             byte[] postBytes = postData.getBytes();
 
