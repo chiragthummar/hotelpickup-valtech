@@ -14,6 +14,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -136,18 +141,75 @@ public class PickupCarScreen extends AppCompatActivity implements OnClickListene
             Log.e("HotelPickup.PickupCarScreen.init", ignore.getMessage(), ignore);
         }
         this.barCodeField = (EditText) findViewById(R.id.barCodeField);
-        this.barCodeField.setTypeface(font);
-        this.barCodeField.setHintTextColor(getResources().getColor(R.color.white));
+//        this.barCodeField.setTypeface(font);
+//        this.barCodeField.setHintTextColor(getResources().getColor(R.color.white));
         this.barCodeField.requestFocus();
+        this.barCodeField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
+
+                String input = barCodeField.getText().toString().trim();
+
+                if (input.length() == 8 && TextUtils.isDigitsOnly(input)) {
+
+                    barCodeField.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    barCodeField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
+
+                    return;
+                }
+
+
+//                if (input.length() == 0) {
+//
+//                    barcodeField.setInputType(InputType.TYPE_CLASS_TEXT);
+//                    barcodeField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(200)});
+//
+//                    return;
+//                }
+
+
+                if (charSequence.toString().contains("http") && ( charSequence.toString().indexOf("code=") > 0 || charSequence.toString().indexOf("\n") > 0 || charSequence.toString().indexOf("\r\n") > 0 || charSequence.toString().contains("\r\n") || charSequence.toString().indexOf("%0D%0A") > 0)) {
+
+                    String barCode = HotelPickupUtility.decryptBarcodeNeww(input, PickupCarScreen.this);
+
+                    Log.e("barCode",barCode+"");
+
+                    if (barCode != null) {
+
+                        barCode = barCode.replace("#", "").trim();
+
+                        if (barCode.length() == 8 && TextUtils.isDigitsOnly(barCode)) {
+                            barCodeField.setText(barCode);
+                        }
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+        InputMethodManager manager = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
+        manager.showSoftInput(this.barCodeField, InputMethodManager.SHOW_FORCED);
         mobileNumber = (EditText) findViewById(R.id.mobileNumber);
         this.mobileNumber.setTypeface(font);
 
         this.mobileNumber.setHintTextColor(getResources().getColor(R.color.white));
 
-        this.barCodeField.setOnKeyListener(this);
+//        this.barCodeField.setOnKeyListener(this);
 
-        ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(this.barCodeField, 2);
+//        ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(this.barCodeField, 2);
         ((ImageButton) findViewById(R.id.scanButton)).setOnClickListener(this);
         initCustomLogo();
 

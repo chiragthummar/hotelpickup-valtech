@@ -134,4 +134,26 @@ public class HotelPickupUtility {
             return null;
         }
     }
+
+    public static String decryptBarcodeNeww(String enc, Context ctx) {
+
+
+        try {
+            String encrypted = enc.toLowerCase(Locale.US).replace("qr code", "");
+            URL url = new URL(encrypted);
+            String query = url.getQuery();
+            String code = query.replace("code=", "");
+            code = URLDecoder.decode(code, "UTF-8");
+
+            Log.e("code",code+"");
+
+            code = encrypt(code);
+
+            return code;
+        } catch (Exception t) {
+
+        }
+        return null;
+    }
+
 }

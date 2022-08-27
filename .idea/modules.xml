@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HOTELPICK_VALET.iml" filepath="$PROJECT_DIR$/.idea/HOTELPICK_VALET.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HOTELPICK_VALET.app.unitTest.iml" />
     </modules>
   </component>
 </project>
